@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <div class="row p-3 mb-3 justify-content-center">
+        <h2>Your Portfolio</h2>
+    </div>
+
+    <div class="mb-3">
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Current Price</th>
+                <th scope="col">Total Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in stocks %}
+                    <tr>
+                        <th style = "text-align:left" scope="row">{{ stock.name }}</th>
+                        <td>{{ stock.shares }}</td>
+                        <td>{{ stock.price }}</td>
+                        <td>{{ stock.value }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <th style = "text-align:left" scope="row" colspan="3">Cash</th>
+                    <td>{{ cash }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                  <th style = "text-align:left" scope="row" colspan="3">Sum</th>
+                  <th scope="row">{{ total }}</th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="row p-3 mb-3 justify-content-center">
+            <h4>Add Money to Your Account</h4>
+        </div>
+        <form action="/" method="post">
+            <div class="row mb-3 justify-content-center">
+                <label class="col-sm-2 col-form-label">Enter the Amount to Add:</label>
+                <div class="col-sm-2">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="addmoney" name="addmoney" placeholder="Amount to Add" type="number">
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Add Money</button>
+        </form>
+        </div>
+{% endblock %}
